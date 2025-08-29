@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mushroom Classification</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: url("https://skane.naturskyddsforeningen.se/wp-content/uploads/sites/106/2018/10/IMG_1233_Fotor.jpg")
+          no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        padding: 30px 20px;
+      }
+
+      #result {
+        text-align: center;
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 30px;
+
+        /* ADDITION: background and padding for visibility */
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 12px;
+      }
+
+      .upload-container {
+        width: 100%;
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        padding: 40px 30px;
+        box-sizing: border-box;
+      }
+
+      form.upload-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      form.upload-form h3 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .file-label {
+        margin-top: 15px;
+        background-color: #2e8b57;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .file-label:hover {
+        background-color: gray;
+      }
+
+      #file_upload {
+        display: none;
+      }
+
+      #button-31 {
+        background-color: black;
+        color: white;
+        margin-top: 20px;
+        padding: 10px 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .preview {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+      }
+
+      #image-preview {
+        max-width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 16px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* ADDITION: Flex row to align file label and button */
+      .button-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      /* Ensure margins inside buttons are reset */
+      .file-label,
+      #button-31 {
+        margin-top: 0 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      {% if prediction %}
+      <div id="result">The Mushroom is = {{ prediction }}</div>
+      {% endif %}
+
+      <div class="upload-container">
+        <form
+          action="/Mushroom-classification-predict"
+          method="post"
+          enctype="multipart/form-data"
+          class="upload-form"
+        >
+          <h3>Upload a Mushroom Image to Classify</h3>
+          <input
+            type="file"
+            name="image_file"
+            id="file_upload"
+            class="file-input"
+          />
+
+          <!-- ADDITION: Wrap label and button inside .button-row -->
+          <div class="button-row">
+            <label for="file_upload" class="file-label"
+              >Select Mushroom Image</label
+            >
+            <button type="submit" id="button-31">Predict</button>
+          </div>
+
+          <div class="preview">
+            <img id="image-preview" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+  </body>
+</html>

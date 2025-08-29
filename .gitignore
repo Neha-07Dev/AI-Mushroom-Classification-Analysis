@@ -1,0 +1,35 @@
+# Virtual environment
+mushroom_env/
+Flask/mushroom_env/
+env/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Datasets
+*.csv
+*.tsv
+*.xlsx
+*.xls
+
+# Models
+*.h5
+*.pkl
+*.joblib
+
+# SQLite or DB files
+*.sqlite3
+*.db
